@@ -1,8 +1,8 @@
 package test;
 
-import io.qameta.allure.Step;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
+import page.BasePage;
 import util.driver.DriverFactory;
 
 import static util.PropertyFileReader.getProperty;
@@ -11,17 +11,17 @@ import static util.driver.DriverHolder.setDriver;
 
 public class BaseTest {
 
-    @Step("Opening Application")
     @BeforeMethod
     public void before() {
         setDriver(DriverFactory.getNewDriverInstance(getProperty("browser")));
         getDriver().manage().window().maximize();
         getDriver().get(getProperty("application_url"));
+        BasePage.clickContinueShopping(getDriver());
+
     }
 
-    @Step("Closing Application")
     @AfterMethod
-    public void after() {
+    public void after(ITestResult result) {
         if (getDriver() != null) {
             getDriver().quit();
         }

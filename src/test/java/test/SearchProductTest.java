@@ -7,12 +7,13 @@ import org.testng.annotations.Test;
 import page.HomePage;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
+import static io.qameta.allure.SeverityLevel.NORMAL;
 import static util.driver.DriverHolder.getDriver;
 
 public class SearchProductTest extends BaseTest {
 
     @Test(description = "Search Product and Verify the first link")
-    @Severity(CRITICAL)
+    @Severity(NORMAL)
     @Description("Search Product and Verify the first link")
     @Story("As a user I should be able to Search Product and Verify the first link")
     public void searchProductAndVerifyFirstLink() {

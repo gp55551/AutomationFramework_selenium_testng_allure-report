@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import static util.CommonMethods.*;
+
 public class HomePage extends BasePage {
 
     private final By logo = By.id("nav-logo-sprites");
@@ -13,54 +15,53 @@ public class HomePage extends BasePage {
 
     private final By firstSearchResultName = By.xpath("(//*[text()='Results']/following::a/h2/span)[1]");
     private final By mxPlayerLink = By.xpath("//a[text()='MX Player']");
-    private final By mxPlayerHeader = By.xpath("(//a[@href='/minitv'])[1]");
-
+    private final By helloSignInLink = By.xpath("//*[text()='Hello, sign in']");
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     @Step("verify Home Page")
-    public void verifyHomePage()
+    public HomePage verifyHomePage()
     {
-        waitUntilElementVisible(logo);
-        Assert.assertTrue(driver.findElement(logo).isDisplayed());
+        verifyElementDisplayed(driver, logo);
+        return this;
     }
 
     @Step("search Product")
-    public void searchProduct(String product)
+    public HomePage searchProduct(String product)
     {
-        waitUntilElementVisible(searchBox);
-        driver.findElement(searchBox).sendKeys(product);
-        waitUntilElementVisible(searchButton);
-        driver.findElement(searchButton).click();
+        click(driver, searchBox);
+        sendKeys(driver, searchBox, product);
+        return this;
     }
 
     @Step("verify First Link")
-    public void verifyFirstLink(String product)
+    public HomePage verifyFirstLink(String product)
     {
         waitUntilElementVisible(firstSearchResultName);
         Assert.assertTrue(driver.findElement(firstSearchResultName).getText().contains(product));
+        return this;
     }
 
     @Step("verify MX Player link ")
-    public void verifyMXPlayerLink()
+    public HomePage verifyMXPlayerLink()
     {
-        waitUntilElementVisible(mxPlayerLink);
-        Assert.assertTrue(driver.findElement(mxPlayerLink).isDisplayed());
+        verifyElementDisplayed(driver, mxPlayerLink);
+        return this;
     }
 
     @Step("click MX Player link ")
-    public void clickMXPlayerLink()
+    public MXPlayerPage clickMXPlayerLink()
     {
-        waitUntilElementVisible(mxPlayerLink);
-        driver.findElement(mxPlayerLink).click();
+        click(driver, mxPlayerLink);
+        return new MXPlayerPage(driver);
     }
 
-    @Step("verify MX Player Homepage")
-    public void verifyMXPlayerHomepage()
+    @Step("click Sign In Link")
+    public SignInPage clickSignInLink()
     {
-        waitUntilElementVisible(mxPlayerHeader);
-        Assert.assertTrue(driver.findElement(mxPlayerHeader).isDisplayed());
+        click(driver,helloSignInLink);
+        return new SignInPage(driver);
     }
 }

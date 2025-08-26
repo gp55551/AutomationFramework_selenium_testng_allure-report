@@ -17,33 +17,16 @@ public class BasePage {
         BasePage.driver = driver;
     }
 
+    public static void clickContinueShopping(WebDriver driver) {
+        By by = By.xpath("//*[text()='Continue shopping']");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        if(driver.findElements(by).size()==1) {
+            driver.findElement(by).click();
+        }
+    }
+
     public void waitUntilElementVisible(By by) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-    }
-
-    public void waitUntilElementClickable(By by) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
-
-    public void click(By by) {
-        waitUntilElementClickable(by);
-        driver.findElement(by).click();
-    }
-
-    public WebElement getElement(By by) {
-        waitUntilElementVisible(by);
-        return driver.findElement(by);
-    }
-
-    public List<WebElement> getElements(By by) {
-        waitUntilElementVisible(by);
-        return driver.findElements(by);
-    }
-
-    public void sendKeys(By by, String text) {
-        waitUntilElementVisible(by);
-        driver.findElement(by).sendKeys(text);
     }
 }
