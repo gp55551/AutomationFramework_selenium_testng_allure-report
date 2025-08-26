@@ -12,7 +12,7 @@ import static util.driver.DriverHolder.setDriver;
 public class BaseTest {
 
     @BeforeMethod
-    public void before() {
+    public void setup() {
         setDriver(DriverFactory.getNewDriverInstance(getProperty("browser")));
         getDriver().manage().window().maximize();
         getDriver().get(getProperty("application_url"));
@@ -21,7 +21,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void after(ITestResult result) {
+    public void teardown(ITestResult result) {
         if (getDriver() != null) {
             getDriver().quit();
         }
