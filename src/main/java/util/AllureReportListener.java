@@ -31,11 +31,13 @@ public class AllureReportListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
         System.out.println("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
+        LoggerLoad.info("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
+        LoggerLoad.info("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
     }
 
     @Override
