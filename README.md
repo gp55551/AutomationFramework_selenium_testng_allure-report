@@ -8,6 +8,10 @@ This is a demo project for Selenium Page Object Model with Allure reporting.
 * [Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
 * IntelliJ IDEA
 
+### Additional Configs
+1. Allure Report
+2. Added Logs
+
 ### Steps
 1. Clone this project
 2. Open the project in Intellij IDEA
