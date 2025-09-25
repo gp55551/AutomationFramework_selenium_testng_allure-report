@@ -16,7 +16,6 @@ public class HomepageTest extends BaseTest {
     @Description("Verify the homepage of the application")
     @Story("As a user I should be able to verify homepage of the application")
     public void verifyHomePage() {
-        LoggerLoad.info("Verifying the homepage of the application");
         HomePage homePage = new HomePage(getDriver());
         homePage.verifyHomePage();
     }
