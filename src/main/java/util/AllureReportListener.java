@@ -30,19 +30,20 @@ public class AllureReportListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        System.out.println("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
-        LoggerLoad.info("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
+        //System.out.println("Starting Test Method '" + getTestMethodName(iTestResult) + "'");
+        LoggerLoad.info("Executing Test Method '" + getTestMethodName(iTestResult) + "'");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
-        LoggerLoad.info("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
+        //System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Passed");
+        LoggerLoad.info("Test Method '" + getTestMethodName(iTestResult) + "' is PASSED");
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Failed");
+        //System.out.println("Test Method '" + getTestMethodName(iTestResult) + "' is Failed");
+        LoggerLoad.info("Test Method '" + getTestMethodName(iTestResult) + "' is FAILED");
         if (getDriver() != null) {
             System.out.println("Screenshot has captured for the Test Method '" + getTestMethodName(iTestResult) + "'");
             saveScreenshotPNG(getDriver());
