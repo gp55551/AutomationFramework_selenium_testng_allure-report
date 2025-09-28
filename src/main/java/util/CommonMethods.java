@@ -5,8 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.report.AllureReportBuilder;
+import ru.yandex.qatools.allure.report.AllureReportBuilderException;
 
+import java.io.File;
 import java.time.Duration;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class CommonMethods {
 
@@ -33,6 +42,37 @@ public class CommonMethods {
     public static void verifyElementDisplayed(WebDriver driver, By locator) {
         waitForElementToBeVisible(driver, locator);
         Assert.assertTrue(driver.findElement(locator).isDisplayed());
+    }
+
+    public static void deleteFiles(String dirPath) {
+
+        try (Stream<Path> stream = Files.walk(Paths.get(dirPath))){
+            stream.filter(Files::isRegularFile)
+                    .forEach(file -> {
+                        try {
+                            Files.delete(file);
+                            System.out.println("Deleted file: " + file);
+                        } catch (IOException e) {
+                            System.err.println("Failed to delete file: " + file + " " + e.getMessage());
+                        }
+                    });
+        }
+        catch (IOException e) {
+            System.err.println("Failed to delete files: " + e.getMessage());
+        }
+    }
+
+    public static void generateAllureReport(String dirPath) {
+
+        // It will generate the Allure Report folder.
+        try {
+            new AllureReportBuilder("1.5.4", new File("allure-report")).unpackFace();
+            new AllureReportBuilder("1.5.4", new File("allure-report")).processResults(new
+                    File(dirPath));
+        } catch (AllureReportBuilderException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 
