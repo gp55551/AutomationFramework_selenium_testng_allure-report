@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.report.AllureReportBuilder;
-import ru.yandex.qatools.allure.report.AllureReportBuilderException;
 
-import java.io.File;
 import java.time.Duration;
 
 import java.io.IOException;
@@ -61,19 +58,4 @@ public class CommonMethods {
             System.err.println("Failed to delete files: " + e.getMessage());
         }
     }
-
-    public static void generateAllureReport(String dirPath) {
-
-        // It will generate the Allure Report folder.
-        try {
-            new AllureReportBuilder("1.5.4", new File("allure-report")).unpackFace();
-            new AllureReportBuilder("1.5.4", new File("allure-report")).processResults(new
-                    File(dirPath));
-        } catch (AllureReportBuilderException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 }
-
-
