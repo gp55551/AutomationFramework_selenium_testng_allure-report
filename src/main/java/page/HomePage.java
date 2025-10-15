@@ -15,6 +15,8 @@ public class HomePage extends BasePage {
     private final By firstSearchResultName = By.xpath("(//*[text()='Results']/following::a/h2/span)[1]");
     private final By mxPlayerLink = By.xpath("//a[text()='MX Player']");
     private final By helloSignInLink = By.xpath("//*[text()='Hello, sign in']");
+    private final By languageLink = By.xpath("//a[@href='/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=topnav_lang']");
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -26,6 +28,21 @@ public class HomePage extends BasePage {
         verifyElementDisplayed(driver, logo);
         return this;
     }
+
+    @Step("verify Search field")
+    public HomePage verifySearchField()
+    {
+        verifyElementDisplayed(driver, searchBox);
+        return this;
+    }
+
+    @Step("verify Search Button")
+    public HomePage verifySearchButton()
+    {
+        verifyElementDisplayed(driver, searchButton);
+        return this;
+    }
+
 
     @Step("search Product")
     public HomePage searchProduct(String product)
@@ -62,5 +79,12 @@ public class HomePage extends BasePage {
     {
         click(driver,helloSignInLink);
         return new SignInPage(driver);
+    }
+
+    @Step("verify language Link")
+    public HomePage verifyLanguageLink()
+    {
+        verifyElementDisplayed(driver, languageLink);
+        return this;
     }
 }

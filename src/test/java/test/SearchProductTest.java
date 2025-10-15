@@ -15,6 +15,17 @@ public class SearchProductTest extends BaseTest {
     @Severity(NORMAL)
     @Description("Search Product and Verify the first link")
     @Story("As a user I should be able to Search Product and Verify the first link")
+    public void verifySearch() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.verifySearchField();
+        homePage.verifySearchButton();
+    }
+
+
+    @Test(description = "Search Product and Verify the first link")
+    @Severity(NORMAL)
+    @Description("Search Product and Verify the first link")
+    @Story("As a user I should be able to Search Product and Verify the first link")
     public void searchProductAndVerifyFirstLink() {
         HomePage homePage = new HomePage(getDriver());
         homePage.searchProduct("iPhone 15");
