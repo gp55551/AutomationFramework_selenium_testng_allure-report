@@ -3,9 +3,7 @@ package test;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import page.HomePage;
-import util.LoggerLoad;
 
-import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 import static util.driver.DriverHolder.getDriver;
 
